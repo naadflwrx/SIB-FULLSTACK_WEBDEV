@@ -1,0 +1,22 @@
+body{
+	font-family:'Open Sans';
+    background-color: rgb(225, 252, 179);
+}
+
+img{
+	border-radius: 2rem;
+}
+
+.judul{
+	text-align: center; 
+	color: rgb(128, 133, 8);
+}
+
+h2{
+	color: rgb(64, 93, 21);
+}
+
+#education{
+	font-style: italic;
+    color: rgb(86, 37, 10);
+}

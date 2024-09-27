@@ -1,0 +1,19 @@
+body{
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    background-color: rgb(244, 244, 149);
+}
+
+#name{
+    color:brown;
+}
+
+.button{
+    background-color: rgb(39, 201, 85);
+    color: white;
+    border-radius: 5px;
+}
+
+h2{
+    color:brown; 
+    text-align: center;
+}
