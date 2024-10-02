@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas Function</title>
+    <style>
+        h2{
+            color: brown;
+            margin-top: 10rem;
+        }
+
+        body{
+            background-color: rgb(237, 218, 142);
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Menghitung Luas Persegi Panjang dan Lingkaran</h2>
+
+    <script>
+        // Function declaration untuk menghitung luas persegi panjang
+        function Persegi(panjang, lebar) {
+            // Mengembalikan hasil perhitungan panjang * lebar
+            return panjang * lebar;
+        }
+
+        // Arrow function untuk menghitung luas lingkaran
+        const Lingkaran = (jariJari) => Math.PI * Math.pow(jariJari, 2);
+
+        // Nilai parameter perhitungan
+        const panjang = 13;  // Panjang persegi
+        const lebar = 7;     // Lebar persegi
+        const jariJari = 4;  // Jari lingkaran
+
+        // template literals untuk menampilkan hasil perhitungan
+        const hasilPersegi = `Luas persegi panjang dengan panjang ${panjang} dan lebar ${lebar} 
+            adalah: ${Persegi(panjang, lebar)}`;
+
+        const hasilLingkaran = `Luas lingkaran dengan jari-jari ${jariJari} 
+            adalah: ${Lingkaran(jariJari).toFixed(1)}`; // toFixed untuk menampilkan angka desimal
+
+        // Menampilkan hasil
+        document.write(hasilPersegi + "<br>");
+        document.write(hasilLingkaran);
+    </script>
+</body>
+</html>
