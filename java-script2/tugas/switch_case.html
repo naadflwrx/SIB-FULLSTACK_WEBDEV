@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaji Pegawai</title>
+</head>
+
+<body>
+    <script>
+        let nama = "Sina";   
+        let golongan = 2;    
+        let menikah = false;  
+        let gaji = 0;        
+        let tunjangan = 0;  
+
+        // Menentukan gaji berdasarkan golongan
+        switch (golongan) {
+            case 1:
+                gaji = 10000000;
+                break;
+            case 2:
+                gaji = 15000000;
+                if (menikah) {
+                    tunjangan = 2000000;  // Jika golongan 2 & menikah
+                }
+                break;
+            case 3:
+                gaji = 20000000;
+                break;
+            default:
+                document.write("Golongan tidak valid. <br>");
+        }
+
+        // Gaji bersih
+        let gajiBersih = gaji + tunjangan;
+
+        // Menampilkan hasil
+        document.write("Pegawai atas nama "+ nama + " dengan golongan: " + golongan + 
+            " <br> Mendapatkan gaji bersih: Rp " + gajiBersih);
+    </script>
+</body>
+</html>
