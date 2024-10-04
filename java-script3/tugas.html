@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas Javascript</title>
+</head>
+
+<body>
+    <script>
+        // data pelajar
+        let p1 = {'nama': 'Sina', 'nilai': 80};
+        let p2 = {'nama': 'Zoro', 'nilai': 65};
+        let p3 = {'nama': 'Nami', 'nilai': 90};
+        let p4 = {'nama': 'Sanji', 'nilai': 45};
+        let p5 = {'nama': 'Bepo', 'nilai': 85};
+        let p6 = {'nama': 'Gojo', 'nilai': 20};
+    
+        // array
+        let pelajar = [p1, p2, p3, p4, p5, p6];
+    
+        function getGrade(nilai) {
+            if (nilai >= 85) return 'A';
+            if (nilai >= 75) return 'B';
+            if (nilai >= 60) return 'C';
+            if (nilai >= 30) return 'D';
+            return 'E';
+        }
+
+        function getPredikat(grade) {
+            switch (grade) {
+                case 'A': return 'Sangat Baik';
+                case 'B': return 'Baik';
+                case 'C': return 'Cukup Baik';
+                case 'D': return 'Kurang';
+                case 'E': return 'Sangat Kurang';
+                default: return '';
+            }
+        }
+    
+        // tabel
+        let table = '<table border="2" cellpadding="3" cellspacing="2">';
+        table += '<thead><tr><th>No</th><th>Nama</th><th>Nilai</th><th>Keterangan</th><th>Grade</th><th>Predikat</th></tr></thead><tbody>';
+    
+        pelajar.forEach((p, index) => {
+            let keterangan = p.nilai > 60 ? 'Lulus' : 'Tidak Lulus';
+            let grade = getGrade(p.nilai);
+            let predikat = getPredikat(grade);
+    
+            table += 
+                `<tr>
+                    <td>${index + 1}</td>
+                    <td>${p.nama}</td>
+                    <td>${p.nilai}</td>
+                    <td>${keterangan}</td>
+                    <td>${grade}</td>
+                    <td>${predikat}</td>
+                </tr>`;
+            }
+        );
+    
+        table += '</tbody></table>';
+    
+        // Menampilkan tabel
+        document.write(table);
+    </script>
+    
+</body>
+</html>
