@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="judul">Selamat Datang di DOM HTML</h1>
+    <button onclick="ubahtext()">Ubah text</button>
+    
+     <h1 id="paragrap">Contoh ubah style</h1>
+     <button onclick="ubahgaya()">Ubah gaya</button>
+     <hr>
+
+     <div id="content">
+        <p id="paragraf">Ini adalah paragraf</p>
+     </div>
+     <button onclick="tambahElemen()">Tambah paragraf</button>
+     <button onclick="hapusElemen()">Hapus paragraf</button>
+
+    <script>
+        // contoh mengubah element html
+        // function declaration
+        function ubahteks(){
+            document.getElementById("judul").innerText = "Text telah diubah!";
+        }
+
+        function ubahgaya(){
+            document.getElementById("paragrap").style.color="blue";
+            document.getElementById("paragrap").style.fontSize="20px";
+        }
+
+        function tambahElemen(){
+            let paragrafBaru = document.createElement("p"); //membantu mengola tag html agar tertambah, dalam contoh tag <p>
+                paragrafBaru.innerText = "Paragraf baru telah ditambahkan";
+                document.getElementById("content").appendChild(paragrafBaru);
+                // library appenchild membantu untuk menambahkan keturunan element
+        }
+
+        function hapusElemen(){
+            let content = document.getElementById("content");
+            let paragraf = document.querySelector("p");
+            // perbedaan queryselector dan get adalah, jika get mengakses sesuai deklarasi misal getElement id maka id yang dibaca
+            // Jika selector mengakses sesuai proses ataupun keseluruhan proses
+
+            if(content.contains(paragraf)){
+                content.removeChild(paragraf);
+            }else {
+                alert("Paragraf tidak ditemukan");
+            }
+        }
+
+    </script>
+</body>
+</html>
