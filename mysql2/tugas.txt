@@ -1,0 +1,150 @@
+Microsoft Windows [Version 10.0.22631.4169]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\62853>cd/
+
+C:\>cd xampp/mysql/bin
+
+C:\xampp\mysql\bin>mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| classicmodels      |
+| db_actati          |
+| db_puskesmas       |
+| dblatihan          |
+| dbpegawai          |
+| dbpenjualan        |
+| dbprojek_uas       |
+| dbti09             |
+| dbtoko             |
+| dbtoko_senin       |
+| dbtransaksi        |
+| information_schema |
+| mydb               |
+| mysql              |
+| performance_schema |
+| perpustakaan       |
+| phpmyadmin         |
+| sib7               |
+| test               |
+| ti09               |
+| toko_senin         |
+| tokosenin          |
++--------------------+
+22 rows in set (0.025 sec)
+
+MariaDB [(none)]> use sib7;
+Database changed
+
+MariaDB [sib7]> show tables;
++----------------+
+| Tables_in_sib7 |
++----------------+
+| jenis          |
+| produk         |
++----------------+
+2 rows in set (0.000 sec)
+
+MariaDB [sib7]> create table vendor (
+    -> id int primary key auto_increment,
+    -> nomor varchar(50) not null,
+    -> nama varchar(50) not null,
+    -> kode varchar(5) not null,
+    -> alamat text not null,
+    -> kontak varchar(50) not null);
+Query OK, 0 rows affected (0.029 sec)
+
+MariaDB [sib7]> desc vendor;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| id     | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nomor  | varchar(50) | NO   |     | NULL    |                |
+| nama   | varchar(50) | NO   |     | NULL    |                |
+| kode   | varchar(5)  | NO   |     | NULL    |                |
+| alamat | text        | NO   |     | NULL    |                |
+| kontak | varchar(50) | NO   |     | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
+6 rows in set (0.010 sec)
+
+MariaDB [sib7]> insert into vendor (nomor, nama, kode, alamat, kontak) values
+    -> ('vdr01', 'nf academy', 12300, 'Depok', '085347852713'),
+    -> ('vdr02', 'pt furniture', 12340, 'Bogor', '082351331843'),
+    -> ('vdr03', 'toko elektronik', 12345, 'Bekasi', '085128941012'),
+    -> ('vdr04', 'warmindo', 61234, 'Jogja', '081890237123'),
+    -> ('vdr05', 'pt sukses', 67123, 'Depok', '085273672812'),
+    -> ('vdr06', 'pt amanah', 67812, 'Bogor', '082721900567');
+Query OK, 6 rows affected (0.012 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+MariaDB [sib7]> select * from vendor;
++----+-------+-----------------+-------+--------+--------------+
+| id | nomor | nama            | kode  | alamat | kontak       |
++----+-------+-----------------+-------+--------+--------------+
+|  1 | vdr01 | nf academy      | 12300 | Depok  | 085347852713 |
+|  2 | vdr02 | pt furniture    | 12340 | Bogor  | 082351331843 |
+|  3 | vdr03 | toko elektronik | 12345 | Bekasi | 085128941012 |
+|  4 | vdr04 | warmindo        | 61234 | Jogja  | 081890237123 |
+|  5 | vdr05 | pt sukses       | 67123 | Depok  | 085273672812 |
+|  6 | vdr06 | pt amanah       | 67812 | Bogor  | 082721900567 |
++----+-------+-----------------+-------+--------+--------------+
+6 rows in set (0.000 sec)
+
+
+MariaDB [sib7]> create table pembelian(
+    -> id int primary key auto_increment,
+    -> tanggal date not null,
+    -> nomor varchar(45) not null,
+    -> produk_id int not null,
+    -> jumlah int not null,
+    -> harga double not null,
+    -> vendor_id int not null,
+    -> foreign key(vendor_id) references vendor(id),
+    -> foreign key(produk_id) references produk(id));
+Query OK, 0 rows affected (0.016 sec)
+
+MariaDB [sib7]> desc pembelian;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| id        | int(11)     | NO   | PRI | NULL    | auto_increment |
+| tanggal   | date        | NO   |     | NULL    |                |
+| nomor     | varchar(45) | NO   |     | NULL    |                |
+| produk_id | int(11)     | NO   | MUL | NULL    |                |
+| jumlah    | int(11)     | NO   |     | NULL    |                |
+| harga     | double      | NO   |     | NULL    |                |
+| vendor_id | int(11)     | NO   | MUL | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+7 rows in set (0.007 sec)
+
+MariaDB [sib7]> insert into pembelian (tanggal, nomor, produk_id, jumlah, harga, vendor_id) values
+    -> ('2024-10-14', 'pbl01', 1, 3, 9000000, 1),
+    -> ('2024-10-14', 'pbl02', 2, 5, 100000, 4),
+    -> ('2024-10-15', 'pbl03', 4, 2, 800000, 2),
+    -> ('2024-10-17', 'pbl04', 1, 1, 3000000, 1),
+    -> ('2024-10-20', 'pbl05', 3, 10, 150000, 5);
+Query OK, 5 rows affected (0.004 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+MariaDB [sib7]> select * from pembelian;
++----+------------+-------+-----------+--------+---------+-----------+
+| id | tanggal    | nomor | produk_id | jumlah | harga   | vendor_id |
++----+------------+-------+-----------+--------+---------+-----------+
+|  1 | 2024-10-14 | pbl01 |         1 |      3 | 9000000 |         1 |
+|  2 | 2024-10-14 | pbl02 |         2 |      5 |  100000 |         4 |
+|  3 | 2024-10-15 | pbl03 |         4 |      2 |  800000 |         2 |
+|  4 | 2024-10-17 | pbl04 |         1 |      1 | 3000000 |         1 |
+|  5 | 2024-10-20 | pbl05 |         3 |     10 |  150000 |         5 |
++----+------------+-------+-----------+--------+---------+-----------+
+5 rows in set (0.004 sec)
